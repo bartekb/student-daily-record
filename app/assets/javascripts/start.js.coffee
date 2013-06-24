@@ -1,0 +1,4 @@
+jQuery ->
+  initChoosen()
+  initWysiHTML()
+  initPopovers()

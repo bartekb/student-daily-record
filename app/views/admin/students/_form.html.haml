@@ -1,0 +1,9 @@
+= simple_form_for @student, :as => :student, :url => @student.new_record? ? admin_students_path : admin_student_path(@student), :html => { :class => 'form-horizontal form-horizontal-fixed', :remote => true } do |f|
+  = f.input :firstname, :label => "Imię", :autocomplete => :off
+  = f.input :lastname, :label => "Nazwisko", :autocomplete => :off
+  = f.input :division_id, :label => "Klasa", :collection => @school.divisions
+
+  .modal-footer
+    #{link_to "Anuluj", '#', :data => { :dismiss => "modal" }, 'arial-hidden' => 'true', :class => 'btn'}
+    = f.submit "Zapisz zmiany", :class => 'btn btn-primary'
+

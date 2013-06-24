@@ -1,0 +1,19 @@
+%h3= "#{@subject.name} - klasa #{@division.name}"
+
+#dataTable
+
+/ .pagination= paginate @students
+/ .break
+
+/ %table.table.table-striped.table-bordered.table-hover
+/   %thead
+/     %tr
+/       %td{:style => "width: 200px;"} Imię i nazwisko
+/       %td Oceny
+/       %td{:style => "width: 100px;"}
+/   %tbody
+/     = render :partial => "student", :collection => @students
+
+/ .pagination
+/   = paginate @students
+.break

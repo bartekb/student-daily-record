@@ -1,0 +1,22 @@
+.well{:style => "padding: 8px 0;"}
+  %ul.nav.nav-list
+    %li.nav-header Foldery
+    %li{:class => params[:folder].blank? ? "active" : nil}
+      %a{:href => messages_url}
+        %i.icon-home
+        = t(:received_folder_name)
+        - if current_user.received_folder.unread.count > 0
+          %span.badge.badge-info= current_user.received_folder.unread.count 
+    %li{:class => params[:folder] == "sent" ? "active" : nil}
+      %a{:href => messages_url(:folder => :sent)}
+        %i.icon-envelope
+        = t(:sent_folder_name)
+    %li{:class => params[:folder] == "draft" ? "active" : nil}
+      %a{:href => messages_url(:folder => :draft)}
+        %i.icon-comment
+        = t(:draft_folder_name)
+    %li{:class => params[:folder] == "removed" ? "active" : nil}
+      %a{:href => messages_url(:folder => :removed)}
+        %i.icon-user
+        = t(:removed_folder_name)
+    %li.divider

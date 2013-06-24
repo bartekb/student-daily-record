@@ -1,0 +1,17 @@
+= simple_form_for @message, :html => { :remote => true } do |f|
+  .controls
+    = f.input :recipient_ids, :collection => Role.all, :as => :grouped_select, :label => false, :include_blank => true, :label_method => :fullname, :group_method => "users", :group_label_method => :fullname, :input_html => { :multiple => true, :tabindex => 4, :class => "input-block-level chzn-select", :data => {:placeholder => "Adresaci"} }
+    %span.help-block Podpowiedź: adresatów możesz wybrać bezpośrednio z listy lub po prostu możesz zacząć pisać imię lub nazwisko aby wyszukać szybciej.
+    / , :data => { :pre => @message.recipients.map(&:attributes).to_json } }
+    = f.input :title, :label => false, :input_html => { :class => "input-block-level", :placeholder => "Temat" }
+
+  .controls
+    = f.input :body, :label => false, :input_html => { :class => "input-block-level wysihtml5", :rows => "12", :placeholder => "Treść" }
+    
+    / .controls{:style => "padding: 5px;"}
+    /   = f.submit "Wyślij", :class => 'btn btn-primary input-medium pull-right'
+    / = link_to "Anuluj", '#', :data => { :dismiss => "modal" }, 'arial-hidden' => 'true', :class => 'btn pull-right'
+
+  .controls
+    = link_to "Analuj", messages_url
+    = f.submit "Wyślij", :class => 'btn btn-primary input-medium pull-right'

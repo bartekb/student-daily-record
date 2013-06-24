@@ -1,0 +1,5 @@
+<%- if @division.errors.any? %>
+  $("#edit-division-form").html("<%= escape_javascript(render :partial => 'form') %>");
+<% else %>
+  window.location.reload();
+<% end %>

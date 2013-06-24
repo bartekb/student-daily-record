@@ -1,0 +1,8 @@
+.well
+  %strong= "#{subject.name}:"
+  - if subject.grades.where(:student_id => current_user.student.id).count > 0
+    - subject.grades.where(:student_id => current_user.student.id).each do |grade|
+      = link_to "#", :class => "popovered", "data-toggle" => "popover", "data-placement" => "top", "data-original-title" => "Ocena #{grade.value}", "data-content" => "Za: #{!grade.weight.blank? ? grade.weight.name : "zwykła ocena"}. Wystawiona #{l(grade.created_at, :format => :short)}, przez #{grade.user.fullname}" do
+        %span.badge{:class => color_grade(grade.value)}= grade.value
+  - else
+    %span.label.label-warning Brak ocen

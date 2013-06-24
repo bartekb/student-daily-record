@@ -1,0 +1,17 @@
+%h2 Zmień swoje hasło
+= form_for(@user, :url => { :action => "update_password" } ) do |f|
+
+  = f.hidden_field :reset_password_token
+  %div
+    = f.label :current_password, "Obecne hasło"
+    %br/
+    = f.password_field :current_password, :autofocus => true
+  %div
+    = f.label :password, "Nowe hasło"
+    %br/
+    = f.password_field :password, :autofocus => true
+  %div
+    = f.label :password_confirmation, "Potwierdź nowe hasło"
+    %br/
+    = f.password_field :password_confirmation
+  %div= f.submit "Zmień"

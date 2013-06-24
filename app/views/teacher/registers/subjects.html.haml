@@ -1,0 +1,16 @@
+%h3= "Dziennik lekcyjny klasy #{@division.name}"
+
+.pagination= paginate @subjects
+.break
+
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %td Nazwa przedmiotu
+      %td{:style => "width: 150px;"}
+  %tbody
+    = render :partial => "subject", :collection => @subjects
+
+.pagination
+  = paginate @subjects
+.break

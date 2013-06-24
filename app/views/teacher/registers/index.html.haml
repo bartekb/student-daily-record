@@ -1,0 +1,18 @@
+%h3 Dzienniki lekcyjne
+
+.pagination= paginate @registers
+.break
+
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %td Klasa
+      %td Wychowawca
+      %td Data utworzenia
+      %td{:style => "width: 150px;"}
+  %tbody
+    = render :partial => "register", :collection => @registers
+
+.pagination
+  = paginate @registers
+.break

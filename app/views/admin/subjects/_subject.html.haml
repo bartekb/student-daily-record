@@ -1,0 +1,14 @@
+%tr
+  %td
+    = subject.name
+  %td
+    = subject.system_name
+  %td
+    = subject.users.count || 'brak'
+  %td
+    = l(subject.created_at, :format => :short)
+  %td{:style => "width: 70px;"}
+    = link_to edit_admin_subject_path(subject), :remote => true, :class => "btn btn-small" do
+      #i.icon-edit
+    = link_to admin_subject_path(subject), :method => :delete, :class => "btn btn-small btn-danger", :confirm => "Jesteś pewien? Tego się nie da cofnąć." do
+      #i.icon-remove-sign

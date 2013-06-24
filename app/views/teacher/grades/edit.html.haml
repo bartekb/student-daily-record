@@ -1,0 +1,7 @@
+#grades-edit.modal.hide.fade.in
+  %div.modal-header
+    %button.close{"data-dismiss" => "modal", "aria-hidden" => "true"} &times;
+    %h3= "Edycja oceny #{@student.name}"
+  
+  #edit-grade-form.modal-body.modal-body-fixed  
+    = render :partial => 'form'

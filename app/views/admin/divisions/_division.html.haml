@@ -1,0 +1,16 @@
+%tr
+  %td
+    = division.name
+  %td
+    = division.user.fullname
+  %td
+    = division.users.count || 'brak'
+  %td
+    = l(division.created_at, :format => :short)
+  %td{:style => "width: 110px;"}
+    = link_to download_access_list_admin_division_path(division), :class => "btn btn-small" do
+      #i.icon-th-list
+    = link_to edit_admin_division_path(division), :remote => true, :class => "btn btn-small" do
+      #i.icon-edit
+    = link_to admin_division_path(division), :method => :delete, :class => "btn btn-small btn-danger", :confirm => "Jesteś pewien? Tego się nie da cofnąć." do
+      #i.icon-remove-sign

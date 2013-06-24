@@ -1,0 +1,27 @@
+%h3 Nauczyciele
+
+= link_to '#add-teacher-modal', :class => 'btn btn-primary', 'data-toggle' => 'modal' do
+  %i.icon-user.icon-white
+  Dodaj nowego nauczyciela
+
+.pagination= paginate @teachers
+.break
+
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %td Imię i nazwisko
+      %td Aktualny login
+      %td Adres email
+      %td Data ostatniego logowania
+      %td Data utworzenia
+      %td
+  %tbody
+    = render :partial => "teacher", :collection => @teachers
+
+.pagination
+  = paginate @teachers
+.break
+
+%div.modal.hide.fade#add-teacher-modal
+  = render :template => 'admin/teachers/new'

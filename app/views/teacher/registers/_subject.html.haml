@@ -1,0 +1,6 @@
+%tr
+  %td
+    = subject.name
+  %td{:style => "width: 70px;"}
+    = link_to students_teacher_register_path(@division, :subject_id => subject.id), :class => "btn btn-small btn-primary" do
+      Wprowadzanie ocen

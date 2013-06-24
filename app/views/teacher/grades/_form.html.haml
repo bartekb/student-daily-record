@@ -1,0 +1,34 @@
+= simple_form_for @grade, :as => :grade, :url => @grade.new_record? ? teacher_grades_path(:s_id => @student.id, :su_id => @subject.id) : teacher_grade_path(@grade), :html => { :class => 'form-horizontal form-horizontal-fixed', :remote => true } do |f|
+  / %a.btn{:onclick => "$('#grade_value').val('3+');"} 3+
+  / %a.btn{:onclick => "$('#grade_value').val('3-');"} 3-
+  / .control-group.string.required
+  /   .controls
+  /     .btn-group
+  /       %a.btn{:onclick => "$('#grade_value').val('4');"} 4
+  /       %a.btn{:onclick => "$('#grade_value').val('4+');"} 4+
+  /       %a.btn{:onclick => "$('#grade_value').val('4-');"} 4- 
+  /       %a.btn{:onclick => "$('#grade_value').val('5');"} 5
+  /       %a.btn{:onclick => "$('#grade_value').val('5+');"} 5+
+  /       %a.btn{:onclick => "$('#grade_value').val('5-');"} 5-  
+  /       %a.btn{:onclick => "$('#grade_value').val('6');"} 6
+  /       %a.btn{:onclick => "$('#grade_value').val('6-');"} 6-
+  = f.input :weight_id, :label => "Waga", :collection => @school.weights         
+  .control-group.string.required
+    .controls
+      .btn-group
+        %a.btn{:onclick => "$('#grade_value').val('1');"} 1
+        %a.btn{:onclick => "$('#grade_value').val('2');"} 2
+        %a.btn{:onclick => "$('#grade_value').val('3');"} 3
+        %a.btn{:onclick => "$('#grade_value').val('4');"} 4
+        %a.btn{:onclick => "$('#grade_value').val('5');"} 5
+        %a.btn{:onclick => "$('#grade_value').val('6');"} 6
+  = f.input :value, :label => "Ocena", :autocomplete => :off
+  = f.input :description, :label => "Opis", :input_html => { :rows => "2" }
+  = f.input :is_semester, :label => "Ocena semestralna?"
+
+  .modal-footer
+    - if @grade && !@grade.new_record?
+      = link_to "Usuń", teacher_grade_url(@grade), :method => :delete, :class => "btn btn-danger", :confirm => "Na pewno?"
+    = link_to "Anuluj", '#', :data => { :dismiss => "modal" }, 'arial-hidden' => 'true', :class => 'btn'
+    = f.submit "Zapisz", :class => 'btn btn-primary'
+

@@ -1,0 +1,28 @@
+.container-fluid
+  .row-fluid
+    .span2
+      %div{:style => "padding: 5px;"}
+        = link_to new_message_path, :class => "btn" do 
+          %i.icon-pencil
+          %strong UTWÓRZ NOWĄ
+
+      .sidebar-nav
+        = render "sidebar"
+
+    .span10
+      .well
+        %h3= @message.title
+        %strong= @message.sender.fullname
+      .well
+        %strong Do: 
+        = @message.recipient_names
+      .well
+        = raw(@message.body)
+      %p.text-right
+        - if @message.is_in?("removed")
+          = link_to "Przywróć", move_message_path(@message, :folder => "received"), :class => "btn btn-warning"
+          = link_to "Usuń na zawsze", message_path(@message), :method => :delete, :class => "btn btn-danger", :confirm => "Na pewno?"
+        - else  
+          = link_to "Do kosza", move_message_path(@message, :folder => "removed"), :class => "btn btn-warning", :confirm => "Na pewno?"
+        - if @message.is_read? && @message.is_in?("received")
+          = link_to "Oznacz jako nieprzeczytaną", unread_message_path(@message), :class => "btn btn-inverse"

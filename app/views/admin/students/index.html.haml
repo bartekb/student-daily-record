@@ -1,0 +1,25 @@
+%h3 Uczniowie
+
+= link_to '#add-student-modal', :class => 'btn btn-primary', 'data-toggle' => 'modal' do
+  %i.icon-user.icon-white
+  Dodaj nowego ucznia
+
+.pagination= paginate @students
+.break
+
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %td Imię i nazwisko
+      %td Klasa
+      %td Data utworzenia
+      %td
+  %tbody
+    = render :partial => "student", :collection => @students
+
+.pagination
+  = paginate @students
+.break
+
+%div.modal.hide.fade#add-student-modal
+  = render :template => 'admin/students/new'

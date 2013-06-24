@@ -1,0 +1,7 @@
+#student-edit.modal.hide.fade.in
+  %div.modal-header
+    %button.close{"data-dismiss" => "modal", "aria-hidden" => "true"} &times;
+    %h3 Edycja danych ucznia
+  
+  #edit-student-form.modal-body.modal-body-fixed  
+    = render :partial => 'form'

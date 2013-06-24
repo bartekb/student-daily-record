@@ -1,0 +1,7 @@
+<%- if @message.errors.any? %>
+  $("#new-message-form").html("<%= escape_javascript(render :partial => 'form') %>");
+  initChoosen();
+  initWysiHTML();
+<% else %>
+  window.location.href='<%= messages_url %>';
+<% end %>

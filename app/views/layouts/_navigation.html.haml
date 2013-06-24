@@ -1,0 +1,63 @@
+= link_to root_path, :class => 'brand' do
+  %i= image_tag "zegar.png", :style => "width: 18px; height: 18px;"
+  = "Dzienniczek"
+- if !user_signed_in?
+  %ul.nav
+    %li
+      = link_to 'Zaloguj mnie', new_user_session_path
+- else
+  %ul.nav
+    - if current_user.is_admin?
+      %li{:class => controller.controller_name =~ /teacher/ ? "active" : nil}
+        = link_to admin_teachers_url do
+          %i.icon-eye-open
+          = "Nauczyciele"
+      %li{:class => controller.controller_name =~ /division/ ? "active" : nil}
+        = link_to admin_divisions_url do
+          %i.icon-home
+          = "Klasy"
+      %li{:class => controller.controller_name =~ /subject/ ? "active" : nil}
+        = link_to admin_subjects_url do
+          %i.icon-bookmark
+          = "Przedmioty"
+      %li{:class => controller.controller_name =~ /student/ ? "active" : nil}
+        = link_to admin_students_url do
+          %i.icon-th-large
+          = "Uczniowie" 
+    - if current_user.is_teacher?
+      %li{:class => controller.controller_name =~ /register/ ? "active" : nil}
+        = link_to teacher_registers_url do
+          %i.icon-tasks
+          = 'Dzienniki lekcjne'
+    - if current_user.is_getter?
+      %li{:class => controller.controller_name =~ /grade/ ? "active" : nil}
+        = link_to getter_grades_url do
+          %i.icon-list-alt
+          = 'Oceny'      
+    %li{:class => controller.controller_name =~ /message/ ? "active" : nil}
+      = link_to messages_url do
+        %i.icon-envelope
+        = 'Wiadomości'
+        - if current_user.received_folder.unread.count > 0
+          %span.badge.badge-info= current_user.received_folder.unread.count      
+        
+
+  %ul.nav.pull-right
+    %li
+      = link_to "#", :class => 'dropdown-toggle', "data-toggle" => 'dropdown' do
+        %i.icon-user
+        = "Witaj, #{current_user.welcome_name}"
+      %ul.dropdown-menu
+        %li
+          = link_to edit_users_path do
+            %i.icon-wrench
+            = 'Zmień hasło'
+        %li
+          = link_to "#" do
+            %i.icon-lock
+            = 'Ustawienia'
+        %li.divider
+        %li
+          = link_to destroy_user_session_path, :method=>'delete' do
+            %i.icon-remove-sign
+            = 'Wyloguj mnie'

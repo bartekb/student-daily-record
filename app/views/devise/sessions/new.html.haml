@@ -1,0 +1,16 @@
+.container
+  .row
+    .span4.offset4.well
+      .logo.text-center
+        = image_tag "zegar.png"
+        %h2 szybkaszkoła.pl
+      %legend Logowanie
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+        = f.text_field :login, :autofocus => true, :class => "span4", :placeholder => "Nazwa logowania"
+        = f.password_field :password, :class => "span4", :placeholder => "Hasło"
+        - if devise_mapping.rememberable?
+          %label.checkbox
+            %input{:name => "remember", :type => "checkbox", :value => "1"}/
+            Zapamiętaj mnie
+        %button.btn.btn-info.btn-block{:name => "submit", :type => "submit"} Zaloguj mnie
+    = render "devise/shared/links"

@@ -1,0 +1,10 @@
+= simple_form_for @division, :as => :division, :url => @division.new_record? ? admin_divisions_path : admin_division_path(@division), :html => { :class => 'form-horizontal form-horizontal-fixed', :remote => true } do |f|
+  = f.input :name, :label => "Nazwa", :autocomplete => :off
+  = f.input :user_id, :label => "Wychowawca", :label_method => :fullname, :collection => @school.users.teachers
+  = f.association :users, :label => "Nauczyciele", :label_method => :fullname, :collection => @school.users.teachers
+  = f.association :subjects, :label => "Przedmioty", :label_method => :system_name
+
+  .modal-footer
+    #{link_to "Anuluj", '#', :data => { :dismiss => "modal" }, 'arial-hidden' => 'true', :class => 'btn'}
+    = f.submit "Zapisz zmiany", :class => 'btn btn-primary'
+

@@ -1,0 +1,26 @@
+%h3 Klasy
+
+= link_to '#add-division-modal', :class => 'btn btn-primary', 'data-toggle' => 'modal' do
+  %i.icon-user.icon-white
+  Dodaj nową klasę
+
+.pagination= paginate @divisions
+.break
+
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %td Nazwa
+      %td Wychowawca
+      %td Nauczyciele
+      %td Data utworzenia
+      %td
+  %tbody
+    = render :partial => "division", :collection => @divisions
+
+.pagination
+  = paginate @divisions
+.break
+
+%div.modal.hide.fade#add-division-modal
+  = render :template => 'admin/divisions/new'

@@ -1,0 +1,26 @@
+%h3 Przedmioty
+
+= link_to '#add-subject-modal', :class => 'btn btn-primary', 'data-toggle' => 'modal' do
+  %i.icon-user.icon-white
+  Dodaj nowy przedmiot
+
+.pagination= paginate @subjects
+.break
+
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %td Nazwa
+      %td Nazwa systemowa
+      %td Nauczyciele
+      %td Data utworzenia
+      %td
+  %tbody
+    = render :partial => "subject", :collection => @subjects
+
+.pagination
+  = paginate @subjects
+.break
+
+%div.modal.hide.fade#add-subject-modal
+  = render :template => 'admin/subjects/new'

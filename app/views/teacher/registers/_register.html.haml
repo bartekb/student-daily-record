@@ -1,0 +1,10 @@
+%tr
+  %td
+    = register.name
+  %td
+    = register.user.fullname
+  %td
+    = l(register.created_at, :format => :short)
+  %td{:style => "width: 70px;"}
+    = link_to subjects_teacher_register_path(register), :class => "btn btn-small btn-primary" do
+      Przejdź do listy przedmiotów

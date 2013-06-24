@@ -1,0 +1,13 @@
+%tr
+  %td
+    = student.name
+  %td
+    - if student.grades.count > 0
+      - student.grades.where(:subject_id => @subject.id).each do |grade|
+        = link_to edit_teacher_grade_path(grade), :remote => true, "data-toggle" => "tooltip", :title => "Za #{!grade.weight.blank? ? grade.weight.name : "brak danych"}, wystawiona #{l(grade.created_at, :format => :short)}" do
+          %span.badge{:class => color_grade(grade.value)}= grade.value
+    - else
+      %span.label.label-warning Brak ocen
+
+  %td{:style => "width: 70px;"}
+    = link_to "Nowa ocena", new_teacher_grade_path(:s_id => student.id, :su_id => @subject.id), :remote => true, :class => "btn btn-small btn-primary"

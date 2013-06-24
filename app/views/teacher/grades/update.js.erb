@@ -1,0 +1,5 @@
+<%- if @grade.errors.any? %>
+  $("#edit-grade-form").html("<%= escape_javascript(render :partial => 'form') %>");
+<% else %>
+  window.location.reload();
+<% end %>

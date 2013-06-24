@@ -1,0 +1,19 @@
+%tr{:onclick => "window.location.href='#{message_url(message)}';", :style => "cursor: pointer;"}
+  %td
+    %input{:type => "checkbox"}/
+    %a{:href => "#"}
+      %i.icon-star-empty
+  - if message.is_read? || message.folder.name != "received"
+    %td
+      = truncate(params[:folder] == "sent" ? message.recipient_names : message.sender.fullname, :length => 30, :omission => '...')
+    %td
+      = message.title
+    %td
+      = l(message.created_at, :format => :short)
+  - else
+    %td
+      %strong= truncate(params[:folder] == "sent" ? message.recipient_names : message.sender.fullname, :length => 30, :omission => '...')
+    %td
+      %strong= message.title
+    %td
+      %strong= l(message.created_at, :format => :short)

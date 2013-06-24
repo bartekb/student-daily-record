@@ -1,0 +1,14 @@
+= simple_form_for @teacher, :as => :user, :url => @teacher.new_record? ? admin_teachers_path : admin_teacher_path(@teacher), :html => { :class => 'form-horizontal form-horizontal-fixed', :remote => true } do |f|
+  = f.input :fullname, :label => "Imię i nazwisko", :autocomplete => :off
+  = f.input :email, :label => "Adres email", :autocomplete => :off
+  = f.input :username, :label => "Nazwa logowania (login)", :autocomplete => :off
+  - if @teacher.nil? || @teacher.new_record?
+    = f.input :password, :label => "Hasło", :autocomplete => :off
+    = f.input :password_confirmation, :label => "Powtórz hasło", :autocomplete => :off
+  = f.association :subjects, :label => "Przedmioty", :label_method => :system_name
+  = f.association :divisions, :label => "Klasy"
+
+  .modal-footer
+    #{link_to "Anuluj", '#', :data => { :dismiss => "modal" }, 'arial-hidden' => 'true', :class => 'btn'}
+    = f.submit "Zapisz zmiany", :class => 'btn btn-primary'
+

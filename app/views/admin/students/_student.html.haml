@@ -1,0 +1,12 @@
+%tr
+  %td
+    = student.name
+  %td
+    = student.division.name
+  %td
+    = l(student.created_at, :format => :short)
+  %td{:style => "width: 70px;"}
+    = link_to edit_admin_student_path(student), :remote => true, :class => "btn btn-small" do
+      #i.icon-edit
+    = link_to admin_student_path(student), :method => :delete, :class => "btn btn-small btn-danger", :confirm => "Jesteś pewien? Tego się nie da cofnąć." do
+      #i.icon-remove-sign
